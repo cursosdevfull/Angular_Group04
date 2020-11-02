@@ -1,21 +1,5 @@
-# App Ambulancia
+# Angular - Grupo 04
 
-Proyecto generado con [Angular CLI](https://github.com/angular/angular-cli) version 10.1.1.
+## Clases
 
-## Instalación de dependencias
-
-```
-npm i
-```
-
-## Ejecución en desarrollo
-
-```
-ng s -o
-```
-
-## Compilado según el ambiente
-
-```
-ng build --configuration=<nombre ambiente>
-```
+1. **Arquitectura Hexagonal:** Descripción de las capas y aplicación en typescript. Creación de los primeros elementos de Angular.
