@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserEntity } from '../domain/user-entity';
 import { UserRepository } from '../domain/user-repository';
@@ -6,8 +7,14 @@ import { UserRepository } from '../domain/user-repository';
   providedIn: 'root',
 })
 export class UserOperations extends UserRepository {
-  constructor() {
+  constructor(private http: HttpClient) {
     super();
+  }
+
+  login(user: UserEntity): void {
+    this.http
+      .post('https://angular03.cursos-dev.com/auth/login', user)
+      .subscribe(() => console.log('llamada al api de auth'));
   }
 
   insert(user: UserEntity): UserEntity {

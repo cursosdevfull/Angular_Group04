@@ -1,0 +1,49 @@
+<mat-card fxFlex="1 1 340px" class="mat-elevation-z8" fxLayout="column">
+  <h3>Credenciales</h3>
+  <form [formGroup]="group" fxLayout="column" (ngSubmit)="login()">
+    <mat-form-field appearance="outline">
+      <mat-label>Correo</mat-label>
+      <mat-icon matSuffix>email</mat-icon>
+      <input type="text" matInput formControlName="email" required />
+      <mat-error *ngIf="group.get('email').hasError('required')"
+        >El campo es obligatorio</mat-error
+      >
+      <mat-error *ngIf="group.get('email').hasError('email')"
+        >Debe ser un correo</mat-error
+      >
+      <!-- <input type="text" matInput required [(ngModel)]="email" /> -->
+      <!--     <input
+      type="text"
+      matInput
+      required
+      [value]="email"
+      (input)="capturar($event)"
+    /> -->
+      <!--     <input
+      type="text"
+      matInput
+      required
+      [ngModel]="email"
+      (ngModelChange)="capturar($event)"
+    /> -->
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Contraseña</mat-label>
+      <mat-icon matSuffix>visibility</mat-icon>
+      <input type="password" matInput formControlName="password" required />
+      <mat-error>El campo es obligatorio</mat-error>
+    </mat-form-field>
+    <!--     <button
+      mat-raised-button
+      color="accent"
+      (click)="login()"
+      type="button"
+      [disabled]="group.invalid"
+    >
+      Ingresar
+    </button> -->
+    <button mat-raised-button color="accent" [disabled]="group.invalid">
+      Ingresar
+    </button>
+  </form>
+</mat-card>
