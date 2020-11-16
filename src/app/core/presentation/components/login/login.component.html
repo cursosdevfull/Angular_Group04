@@ -11,21 +11,6 @@
       <mat-error *ngIf="group.get('email').hasError('email')"
         >Debe ser un correo</mat-error
       >
-      <!-- <input type="text" matInput required [(ngModel)]="email" /> -->
-      <!--     <input
-      type="text"
-      matInput
-      required
-      [value]="email"
-      (input)="capturar($event)"
-    /> -->
-      <!--     <input
-      type="text"
-      matInput
-      required
-      [ngModel]="email"
-      (ngModelChange)="capturar($event)"
-    /> -->
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Contraseña</mat-label>
@@ -33,15 +18,7 @@
       <input type="password" matInput formControlName="password" required />
       <mat-error>El campo es obligatorio</mat-error>
     </mat-form-field>
-    <!--     <button
-      mat-raised-button
-      color="accent"
-      (click)="login()"
-      type="button"
-      [disabled]="group.invalid"
-    >
-      Ingresar
-    </button> -->
+
     <button mat-raised-button color="accent" [disabled]="group.invalid">
       Ingresar
     </button>

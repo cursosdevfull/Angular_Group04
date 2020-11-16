@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  PATH_API: 'https://angular03.cursos-dev.com',
+  TITLE_APP: 'Ambulance System',
 };
 
 /*

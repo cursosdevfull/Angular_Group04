@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [AppComponent, MiComponenteComponent],
@@ -18,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     SharedModule,
     CoreModule,
     HttpClientModule,
+    AppRoutingModule,
   ],
   providers: [{ provide: UserRepository, useClass: UserOperations }],
   bootstrap: [AppComponent],

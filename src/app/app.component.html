@@ -1,10 +1,7 @@
 <mat-sidenav-container>
   <mat-sidenav>Menu</mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <h1>Página inicial</h1>
-    </mat-toolbar>
-
-    <app-page-login></app-page-login>
+    <app-header *ngIf="userLogged"></app-header>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

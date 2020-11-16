@@ -6,5 +6,4 @@ export abstract class UserRepository {
   abstract getAll(): UserEntity[];
   abstract getOne(id: number | string): UserEntity;
   abstract delete(id: number | string): UserEntity;
-  abstract login(user: UserEntity): void;
 }

@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  PATH_API: 'https://angular03.cursos-dev.com',
+  TITLE_APP: 'Ambulance System',
 };

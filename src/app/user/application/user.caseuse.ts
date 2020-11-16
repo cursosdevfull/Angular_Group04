@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { UserEntity } from '../domain/user-entity';
 import { UserRepository } from '../domain/user-repository';
 
@@ -6,10 +7,17 @@ import { UserRepository } from '../domain/user-repository';
   providedIn: 'root',
 })
 export class UserCaseUse {
-  constructor(private readonly userRepository: UserRepository) {}
+  constructor(
+    private readonly auth: AuthService,
+    private readonly userRepository: UserRepository
+  ) {}
 
   login(user: UserEntity) {
-    this.userRepository.login(user);
+    this.auth.login(user);
+  }
+
+  logout() {
+    this.auth.logout();
   }
 
   insertUser(user: UserEntity): void {

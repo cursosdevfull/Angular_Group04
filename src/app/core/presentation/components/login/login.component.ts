@@ -14,8 +14,6 @@ import { UserEntity } from 'src/app/user/domain/user-entity';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit, OnChanges {
-  // email = 'sergiohidalgo@correo.com';
-
   @Output() outputLogin: EventEmitter<UserEntity> = new EventEmitter<
     UserEntity
   >();
@@ -44,13 +42,8 @@ export class LoginComponent implements OnInit, OnChanges {
   login() {
     const user: UserEntity = this.group.value;
     this.outputLogin.emit(user);
-    // console.log(this.group.value);
   }
 
-  /*   capturar(evt) {
-    this.email = evt.target.value;
-    console.log(evt.target.value);
-  } */
   capturar(value) {
     //this.email = value;
     console.log(value);

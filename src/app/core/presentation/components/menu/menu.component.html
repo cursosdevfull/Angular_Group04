@@ -1,0 +1,6 @@
+<div>
+  <button mat-button *ngFor="let item of listMenu" (click)="goTo(item.path)">
+    <mat-icon>{{ item.icon }}</mat-icon>
+    {{ item.title }}
+  </button>
+</div>
