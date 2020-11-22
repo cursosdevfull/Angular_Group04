@@ -1,0 +1,15 @@
+/* :host {
+  display: block;
+  min-height: calc(100vh - 122px);
+  background-color: #c7c79c;
+} */
+
+.container {
+  display: block;
+  min-height: calc(100vh - 122px);
+  background-color: #c7c79c;
+}
+
+mat-card {
+  height: calc(100vh - 160px);
+}

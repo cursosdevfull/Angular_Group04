@@ -1,0 +1,19 @@
+<div fxLayout="column">
+  <table mat-table [dataSource]="dataTable">
+    <ng-container
+      *ngFor="let metadata of metadataTable"
+      [matColumnDef]="metadata.field"
+    >
+      <th mat-header-cell *matHeaderCellDef>{{ metadata.title }}</th>
+      <td mat-cell *matCellDef="let row">
+        {{ row[metadata.field] }}
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columnsToView"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: columnsToView"
+      class="highline"
+    ></tr>
+  </table>
+</div>

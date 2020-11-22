@@ -12,6 +12,21 @@ const routes: Routes = [
     loadChildren: () =>
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
+  {
+    path: 'histories',
+    loadChildren: () =>
+      import('./history/history.module').then((m) => m.HistoryModule),
+  },
+  {
+    path: 'drivers',
+    loadChildren: () =>
+      import('./driver/driver.module').then((m) => m.DriverModule),
+  },
+  {
+    path: 'medics',
+    loadChildren: () =>
+      import('./medic/medic.module').then((m) => m.MedicModule),
+  },
 ];
 
 @NgModule({

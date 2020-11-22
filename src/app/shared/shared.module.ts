@@ -8,10 +8,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { SubtitleComponent } from './components/subtitle/subtitle.component';
+import { ContainerComponent } from './components/container/container.component';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule],
+  declarations: [SubtitleComponent, ContainerComponent, TableComponent],
+  imports: [CommonModule, MatCardModule, FlexLayoutModule, MatTableModule],
   exports: [
     FlexLayoutModule,
     MatSidenavModule,
@@ -21,6 +25,10 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    MatTableModule,
+    SubtitleComponent,
+    ContainerComponent,
+    TableComponent,
   ],
 })
 export class SharedModule {}
