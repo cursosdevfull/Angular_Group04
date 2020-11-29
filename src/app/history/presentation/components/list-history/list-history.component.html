@@ -1,0 +1,17 @@
+<app-table [dataTable]="dataTable" [metadataTable]="metadataTable">
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let row" class="align-right">
+      <button mat-button>
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-button>
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+</app-table>
+<app-keypad
+  [keypadButtons]="listKeyPadButtons"
+  (clickButton)="execute($event)"
+></app-keypad>
