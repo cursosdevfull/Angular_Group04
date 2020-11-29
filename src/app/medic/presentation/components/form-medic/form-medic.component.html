@@ -1,0 +1,14 @@
+<mat-toolbar color="primary" fxLayout fxLayoutAlign="space-between center">
+  <h3 class="title">{{ title }}</h3>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-dialog-content>
+  Aquí el contenido
+
+  <mat-dialog-actions>
+    <button mat-flat-button color="accent" (click)="save()">Grabar</button>
+    <button mat-button mat-dialog-close>Cerrar</button>
+  </mat-dialog-actions>
+</mat-dialog-content>

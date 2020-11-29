@@ -11,3 +11,7 @@
     </td>
   </ng-container>
 </app-table>
+<app-keypad
+  [keypadButtons]="listKeyPadButtons"
+  (clickButton)="execute($event)"
+></app-keypad>

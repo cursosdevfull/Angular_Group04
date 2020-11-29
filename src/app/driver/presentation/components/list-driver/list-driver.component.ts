@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MetadataOverride } from '@angular/core/testing';
+import { KeyPadButton } from 'src/app/interfaces/keypad-button.interface';
 import { MetadataTable } from 'src/app/interfaces/metadata-table.interface';
 
 @Component({
@@ -20,9 +20,21 @@ export class ListDriverComponent implements OnInit {
     { field: 'lastname', title: 'Apellido' },
   ];
 
-  /*   columnsToView = ['name', 'lastname']; */
+  listKeyPadButtons: KeyPadButton[] = [
+    {
+      icon: 'cloud_download',
+      color: 'accent',
+      action: 'EXPORT',
+      tooltip: 'EXPORTAR LISTA',
+    },
+    { icon: 'add', color: 'primary', action: 'NEW', tooltip: 'AGREGAR MÉDICO' },
+  ];
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  execute(action: string) {
+    console.log(action);
+  }
 }
