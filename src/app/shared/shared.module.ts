@@ -20,7 +20,19 @@ import { TableComponent } from './components/table/table.component';
 import { KeypadComponent } from './components/keypad/keypad.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { ExportComponent } from './components/export/export.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import {
+  PerfectScrollbarConfigInterface,
+  PerfectScrollbarModule,
+  PERFECT_SCROLLBAR_CONFIG,
+} from 'ngx-perfect-scrollbar';
+import { ErrorFormDirective } from './directives/error-form.directive';
+import { ErrorControlDirective } from './directives/error-control.directive';
+import { UploadDirective } from './directives/upload.directive';
 
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true,
+};
 @NgModule({
   declarations: [
     SubtitleComponent,
@@ -29,6 +41,9 @@ import { ExportComponent } from './components/export/export.component';
     KeypadComponent,
     ConfirmComponent,
     ExportComponent,
+    ErrorFormDirective,
+    ErrorControlDirective,
+    UploadDirective,
   ],
   imports: [
     CommonModule,
@@ -41,6 +56,7 @@ import { ExportComponent } from './components/export/export.component';
     MatDialogModule,
     MatBottomSheetModule,
     MatListModule,
+    MatPaginatorModule,
   ],
   exports: [
     FlexLayoutModule,
@@ -57,12 +73,24 @@ import { ExportComponent } from './components/export/export.component';
     MatSnackBarModule,
     MatBottomSheetModule,
     MatListModule,
+    MatPaginatorModule,
     SubtitleComponent,
     ContainerComponent,
     TableComponent,
     KeypadComponent,
     ConfirmComponent,
     ExportComponent,
+    PerfectScrollbarModule,
+    ErrorFormDirective,
+    ErrorFormDirective,
+    ErrorControlDirective,
+    UploadDirective,
+  ],
+  providers: [
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
+    },
   ],
 })
 export class SharedModule {}

@@ -1,4 +1,7 @@
 <app-subtitle title="Médicos"></app-subtitle>
 <app-container>
-  <app-list-medic></app-list-medic>
+  <app-list-medic
+    [listMedic]="list"
+    (onEdit)="editMedic($event)"
+  ></app-list-medic>
 </app-container>

@@ -5,10 +5,51 @@
   </button>
 </mat-toolbar>
 <mat-dialog-content>
-  Aquí el contenido
-
-  <mat-dialog-actions>
-    <button mat-flat-button color="accent" (click)="save()">Grabar</button>
-    <button mat-button mat-dialog-close>Cerrar</button>
-  </mat-dialog-actions>
+  <form fxLayout fxLayoutGap="20px" [formGroup]="group" (ngSubmit)="save()">
+    <div
+      class="photo"
+      fxFlex="1 1 33%"
+      appUpload
+      (onHover)="mouseOver = $event"
+      [ngClass]="{ hover: mouseOver }"
+    ></div>
+    <div fxLayout="column" fxFlex="1 1 33%">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input type="text" matInput formControlName="name" required />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Segundo nombre</mat-label>
+        <input type="text" matInput formControlName="surname" required />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Apellido</mat-label>
+        <input type="text" matInput formControlName="lastname" required />
+      </mat-form-field>
+    </div>
+    <div fxLayout="column" fxFlex="1 1 33%">
+      <mat-form-field appearance="outline">
+        <mat-label>CMP</mat-label>
+        <input type="text" matInput formControlName="cmp" required />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>DNI</mat-label>
+        <input type="text" matInput formControlName="dni" required />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Correo</mat-label>
+        <input type="text" matInput formControlName="email" required />
+        <!--         <mat-error *ngIf="group.get('email').hasError('required')"
+          >El correo es obligatorio</mat-error
+        >
+        <mat-error *ngIf="group.get('email').hasError('email')"
+          >Debe ser un correo</mat-error
+        > -->
+      </mat-form-field>
+      <div fxLayout fxLayoutGap="20px" fxLayoutAlign="end center">
+        <button mat-flat-button color="accent" type="submit">Grabar</button>
+        <button mat-button mat-dialog-close>Cerrar</button>
+      </div>
+    </div>
+  </form>
 </mat-dialog-content>

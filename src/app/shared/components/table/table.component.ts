@@ -6,6 +6,7 @@ import {
   QueryList,
   ViewChild,
 } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import {
   MatColumnDef,
   MatTable,
@@ -21,6 +22,7 @@ import { MetadataTable } from 'src/app/interfaces/metadata-table.interface';
 export class TableComponent implements OnInit {
   @Input() dataTable: any[];
   @Input() metadataTable: MetadataTable[];
+  @Input() paginator: MatPaginator;
   @ViewChild(MatTable, { static: true }) table: MatTable<any>;
   @ContentChildren(MatColumnDef) columnsDef: QueryList<MatColumnDef>;
   columnsToView: string[] = [];
@@ -33,13 +35,25 @@ export class TableComponent implements OnInit {
     this.columnsToView = this.metadataTable.map(
       (el: MetadataTable) => el.field
     );
+    this.loadData();
+    this.ngAfterContentInit();
   }
 
   ngAfterContentInit() {
-    this.dataSource = new MatTableDataSource<any>(this.dataTable);
+    if (!this.columnsDef) return false;
+
     this.columnsDef.forEach((columnDef) => this.table.addColumnDef(columnDef));
     if (this.columnsDef.length) {
       this.columnsToView.push('actions');
+    }
+  }
+
+  loadData() {
+    this.dataSource = new MatTableDataSource<any>(this.dataTable);
+
+    if (this.paginator) {
+      this.dataSource.paginator = this.paginator;
+      this.paginator.firstPage();
     }
   }
 

@@ -46,4 +46,13 @@ export class AuthService implements IAuth {
   getChangeStatusUser(): Observable<boolean> {
     return this.onChangeStatusUser.asObservable();
   }
+
+  getStatusUser(): boolean {
+    const refreshToken = this.storage.get('refreshToken');
+    if (this.userLogged || refreshToken) {
+      return true;
+    }
+
+    return false;
+  }
 }

@@ -1,3 +1,7 @@
 .highline:hover {
   background-color: rgb(167, 168, 168);
 }
+
+mat-card {
+  height: calc(100vh - 196px);
+}

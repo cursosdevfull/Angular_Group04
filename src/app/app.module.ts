@@ -13,6 +13,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { MedicRepository } from './medic/domain/medic.repository';
 import { MedicService } from './services/medic.service';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { MatPaginatorIntlPro } from './utils/paginator';
 
 @NgModule({
   declarations: [AppComponent, MiComponenteComponent],
@@ -28,6 +30,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     { provide: UserRepository, useClass: UserOperations },
     { provide: MedicRepository, useClass: MedicService },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: MatPaginatorIntl, useClass: MatPaginatorIntlPro },
   ],
   bootstrap: [AppComponent],
 })

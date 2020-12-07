@@ -1,5 +1,5 @@
 .container-form {
-  width: 500px;
+  width: 800px;
 }
 
 .container-form mat-dialog-container {
@@ -9,6 +9,16 @@
 .container-form mat-dialog-content {
   margin: 0;
   padding: 24px;
+}
+
+.photo {
+  width: 350px;
+  height: 260px;
+  border: 1px solid black;
+}
+
+.photo.hover {
+  border: 1px dashed blue;
 }
 
 @media (max-width: 500px) {

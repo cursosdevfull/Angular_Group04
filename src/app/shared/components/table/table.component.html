@@ -10,7 +10,7 @@
         {{ row[metadata.field] }}
       </td>
     </ng-container>
-    <tr mat-header-row *matHeaderRowDef="columnsToView"></tr>
+    <tr mat-header-row *matHeaderRowDef="columnsToView; sticky: true"></tr>
     <tr
       mat-row
       *matRowDef="let row; columns: columnsToView"

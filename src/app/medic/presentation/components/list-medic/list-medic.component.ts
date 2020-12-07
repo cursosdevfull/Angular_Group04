@@ -1,7 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
 import { KeyPadButton } from 'src/app/interfaces/keypad-button.interface';
 import { MetadataTable } from 'src/app/interfaces/metadata-table.interface';
+import { MedicEntity } from 'src/app/medic/domain/medic-entity';
 import { UtilService } from 'src/app/services/util.service';
 import { FormMedicComponent } from '../form-medic/form-medic.component';
 
@@ -10,13 +21,12 @@ import { FormMedicComponent } from '../form-medic/form-medic.component';
   templateUrl: './list-medic.component.html',
   styleUrls: ['./list-medic.component.css'],
 })
-export class ListMedicComponent implements OnInit {
-  dataTable = [
-    { name: 'Alfonso', lastname: 'Correa' },
-    { name: 'Javier', lastname: 'Angulo' },
-    { name: 'Mónica', lastname: 'Pedraza' },
-    { name: 'Aida', lastname: 'Pérez' },
-  ];
+export class ListMedicComponent implements OnInit, OnChanges {
+  @Input() listMedic: MedicEntity[];
+  @Output() onEdit: EventEmitter<MedicEntity> = new EventEmitter<MedicEntity>();
+  @ViewChild(MatPaginator, { static: true }) matPaginator: MatPaginator;
+
+  dataTable;
 
   metadataTable: MetadataTable[] = [
     { field: 'name', title: 'Nombre' },
@@ -34,6 +44,12 @@ export class ListMedicComponent implements OnInit {
   ];
 
   constructor(private readonly util: UtilService) {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.listMedic.currentValue) {
+      this.dataTable = changes.listMedic.currentValue;
+    }
+  }
 
   ngOnInit(): void {}
 
@@ -53,8 +69,9 @@ export class ListMedicComponent implements OnInit {
     response.subscribe((response) => console.log('response', response));
   }
 
-  edit() {
-    this.openModal({ name: 'Marcela' });
+  edit(row: MedicEntity) {
+    this.onEdit.emit(row);
+    // this.openModal({ name: 'Marcela' });
   }
 
   openModal(record: any = null) {

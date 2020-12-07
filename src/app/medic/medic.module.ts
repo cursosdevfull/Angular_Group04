@@ -6,9 +6,15 @@ import { PageMedicComponent } from './presentation/page-medic/page-medic.compone
 import { SharedModule } from '../shared/shared.module';
 import { ListMedicComponent } from './presentation/components/list-medic/list-medic.component';
 import { FormMedicComponent } from './presentation/components/form-medic/form-medic.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [PageMedicComponent, ListMedicComponent, FormMedicComponent],
-  imports: [CommonModule, MedicRoutingModule, SharedModule],
+  imports: [
+    CommonModule,
+    MedicRoutingModule,
+    SharedModule,
+    ReactiveFormsModule,
+  ],
 })
 export class MedicModule {}
