@@ -9,12 +9,11 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { KeyPadButton } from 'src/app/interfaces/keypad-button.interface';
 import { MetadataTable } from 'src/app/interfaces/metadata-table.interface';
 import { MedicEntity } from 'src/app/medic/domain/medic-entity';
 import { UtilService } from 'src/app/services/util.service';
-import { FormMedicComponent } from '../form-medic/form-medic.component';
 
 @Component({
   selector: 'app-list-medic',
@@ -23,7 +22,8 @@ import { FormMedicComponent } from '../form-medic/form-medic.component';
 })
 export class ListMedicComponent implements OnInit, OnChanges {
   @Input() listMedic: MedicEntity[];
-  @Output() onEdit: EventEmitter<MedicEntity> = new EventEmitter<MedicEntity>();
+  @Output() onActionForm: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onDelete: Subject<string> = new Subject<string>();
   @ViewChild(MatPaginator, { static: true }) matPaginator: MatPaginator;
 
   dataTable;
@@ -55,26 +55,28 @@ export class ListMedicComponent implements OnInit, OnChanges {
 
   execute(action: string) {
     if (action === 'NEW') {
-      this.openModal();
+      this.actionForm();
+      // this.openModal();
     } else if (action === 'EXPORT') {
       this.openSheet();
     }
   }
 
-  delete() {
+  delete(row: MedicEntity) {
     const response: Observable<any> = this.util.confirm(
       '¿Está seguro de eliminar?'
     );
 
-    response.subscribe((response) => console.log('response', response));
+    response.subscribe((response) => {
+      this.onDelete.next(row._id);
+    });
   }
 
-  edit(row: MedicEntity) {
-    this.onEdit.emit(row);
-    // this.openModal({ name: 'Marcela' });
+  actionForm(row: MedicEntity = null) {
+    this.onActionForm.emit(row);
   }
 
-  openModal(record: any = null) {
+  /*   openModal(record: any = null) {
     const options = {
       disableClose: true,
       panelClass: 'container-form',
@@ -87,11 +89,13 @@ export class ListMedicComponent implements OnInit, OnChanges {
     );
     reference.subscribe((response) => {
       if (response) {
-        this.util.showMessage('Datos guardados');
+        this.medicRepository
+          .insert(response)
+          .subscribe((result) => console.log(result));
       }
     });
   }
-
+ */
   openSheet() {
     this.util.openSheet();
   }

@@ -19,6 +19,10 @@ export class PageMedicComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loadMedic();
+  }
+
+  loadMedic() {
     this.medicService.getAll().subscribe((response) => (this.list = response));
   }
 
@@ -35,12 +39,29 @@ export class PageMedicComponent implements OnInit {
     );
     reference.subscribe((response) => {
       if (response) {
-        this.util.showMessage('Datos guardados');
+        if (!response.id) {
+          this.medicService.insert(response.fd).subscribe(() => {
+            this.loadMedic();
+            this.util.showMessage('Datos guardados');
+          });
+        } else {
+          this.medicService.update(response.fd, response.id).subscribe(() => {
+            this.loadMedic();
+            this.util.showMessage('Datos guardados');
+          });
+        }
       }
     });
   }
 
   editMedic(medic: MedicEntity) {
     this.openModal(medic);
+  }
+
+  deleteMedic(_id: string) {
+    this.medicService.delete(_id).subscribe(() => {
+      this.loadMedic();
+      this.util.showMessage('Datos eliminados');
+    });
   }
 }

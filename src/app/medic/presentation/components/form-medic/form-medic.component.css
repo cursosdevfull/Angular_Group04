@@ -21,6 +21,11 @@
   border: 1px dashed blue;
 }
 
+#photo {
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 @media (max-width: 500px) {
   .container-form {
     width: 320px;

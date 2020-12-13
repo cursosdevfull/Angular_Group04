@@ -16,18 +16,14 @@ export class MedicService extends MedicRepository {
     super();
   }
 
-  insert(medic: MedicEntity): Observable<MedicEntity> {
-    /*     const accessToken = this.storage.get("accessToken")
-    const headers: HttpHeaders = new HttpHeaders({ Authorization: `Bearer ${accessToken}`})
-
-    return this.http.post<MedicEntity>(`${environment.PATH_API}/medics`, medic, {headers}); */
-    return this.http.post<MedicEntity>(`${environment.PATH_API}/medics`, medic);
+  insert(fd: FormData): Observable<MedicEntity> {
+    return this.http.post<MedicEntity>(`${environment.PATH_API}/medics`, fd);
   }
 
-  update(medic: MedicEntity, id: string | number): Observable<MedicEntity> {
+  update(fd: FormData, id: string | number): Observable<MedicEntity> {
     return this.http.put<MedicEntity>(
       `${environment.PATH_API}/medics/${id}`,
-      medic
+      fd
     );
   }
 

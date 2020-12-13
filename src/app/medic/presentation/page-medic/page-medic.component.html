@@ -2,6 +2,7 @@
 <app-container>
   <app-list-medic
     [listMedic]="list"
-    (onEdit)="editMedic($event)"
+    (onActionForm)="editMedic($event)"
+    (onDelete)="deleteMedic($event)"
   ></app-list-medic>
 </app-container>

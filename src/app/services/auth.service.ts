@@ -55,4 +55,12 @@ export class AuthService implements IAuth {
 
     return false;
   }
+
+  getNewAccessToken() {
+    const refreshToken = this.storage.get('refreshToken');
+    return this.http.post(
+      `${environment.PATH_API}/auth/new-access-token`,
+      refreshToken
+    );
+  }
 }

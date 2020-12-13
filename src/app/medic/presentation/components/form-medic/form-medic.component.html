@@ -6,11 +6,13 @@
 </mat-toolbar>
 <mat-dialog-content>
   <form fxLayout fxLayoutGap="20px" [formGroup]="group" (ngSubmit)="save()">
-    <div
+    <div id="photo"
+      #contentPhoto
       class="photo"
       fxFlex="1 1 33%"
-      appUpload
+      appUpload="image/jpg,image/jpeg,image/gif,image/png"
       (onHover)="mouseOver = $event"
+      (onUploadedFiles)="selectedImage($event)"
       [ngClass]="{ hover: mouseOver }"
     ></div>
     <div fxLayout="column" fxFlex="1 1 33%">
@@ -39,12 +41,7 @@
       <mat-form-field appearance="outline">
         <mat-label>Correo</mat-label>
         <input type="text" matInput formControlName="email" required />
-        <!--         <mat-error *ngIf="group.get('email').hasError('required')"
-          >El correo es obligatorio</mat-error
-        >
-        <mat-error *ngIf="group.get('email').hasError('email')"
-          >Debe ser un correo</mat-error
-        > -->
+
       </mat-form-field>
       <div fxLayout fxLayoutGap="20px" fxLayoutAlign="end center">
         <button mat-flat-button color="accent" type="submit">Grabar</button>
