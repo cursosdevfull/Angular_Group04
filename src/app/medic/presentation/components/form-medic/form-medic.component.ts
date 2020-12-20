@@ -24,6 +24,7 @@ export class FormMedicComponent implements OnInit {
   group: FormGroup;
 
   @ViewChild('contentPhoto') contentPhoto: ElementRef;
+  @ViewChild('uploadImage') uploadImage: ElementRef;
 
   constructor(
     private readonly reference: MatDialogRef<FormMedicComponent>,
@@ -90,5 +91,15 @@ export class FormMedicComponent implements OnInit {
 
   loadPhoto(image: string | ArrayBuffer) {
     this.contentPhoto.nativeElement.style.backgroundImage = `url(${image})`;
+  }
+
+  loadImage() {
+    this.uploadImage.nativeElement.click();
+  }
+
+  upload(evt) {
+    const files: File[] = [];
+    files.push(evt.target.files[0]);
+    this.selectedImage(files);
   }
 }

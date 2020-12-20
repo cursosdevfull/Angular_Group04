@@ -12,7 +12,6 @@
 }
 
 .photo {
-  width: 350px;
   height: 260px;
   border: 1px solid black;
 }
@@ -24,6 +23,15 @@
 #photo {
   background-repeat: no-repeat;
   background-size: contain;
+}
+
+.textToDrag {
+  text-align: center;
+  font-size: 12px;
+}
+
+input[type="file"] {
+  display: none;
 }
 
 @media (max-width: 500px) {

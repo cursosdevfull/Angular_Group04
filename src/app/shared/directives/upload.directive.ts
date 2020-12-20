@@ -1,6 +1,8 @@
 import {
   Directive,
+  ElementRef,
   EventEmitter,
+  Host,
   HostListener,
   Input,
   Output,
@@ -19,7 +21,13 @@ export class UploadDirective {
   // @Input() mimetypesAllowed = '';
   @Input('appUpload') mimetypesAllowed = '';
 
-  constructor() {}
+  constructor(private el: ElementRef) {}
+
+  ngOnInit() {
+    this.el.nativeElement.innerText = 'Arrastre una imagen o haga clic';
+  }
+
+  @HostListener('click') cargarImagen() {}
 
   @HostListener('dragover', ['$event']) arrastre(evt) {
     evt.preventDefault();

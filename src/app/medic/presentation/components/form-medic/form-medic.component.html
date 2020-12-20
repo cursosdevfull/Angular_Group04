@@ -6,15 +6,33 @@
 </mat-toolbar>
 <mat-dialog-content>
   <form fxLayout fxLayoutGap="20px" [formGroup]="group" (ngSubmit)="save()">
-    <div id="photo"
-      #contentPhoto
-      class="photo"
-      fxFlex="1 1 33%"
-      appUpload="image/jpg,image/jpeg,image/gif,image/png"
-      (onHover)="mouseOver = $event"
-      (onUploadedFiles)="selectedImage($event)"
-      [ngClass]="{ hover: mouseOver }"
-    ></div>
+    <div fxFlex="1 1 33%" fxLayout="column">
+      <div
+        id="photo"
+        #contentPhoto
+        class="photo"
+        appUpload="image/jpg,image/jpeg,image/gif,image/png"
+        (onHover)="mouseOver = $event"
+        (onUploadedFiles)="selectedImage($event)"
+        [ngClass]="{ hover: mouseOver }"
+      ></div>
+      <div fxLayout="column">
+        <span class="textToDrag">
+          Arrastre una imagen o presione este botón
+        </span>
+        <div>
+          <button
+            mat-flat-button
+            (click)="loadImage()"
+            color="primary"
+            type="button"
+          >
+            Cargar imagen
+          </button>
+          <input type="file" #uploadImage (change)="upload($event)" />
+        </div>
+      </div>
+    </div>
     <div fxLayout="column" fxFlex="1 1 33%">
       <mat-form-field appearance="outline">
         <mat-label>Nombre</mat-label>
@@ -41,7 +59,6 @@
       <mat-form-field appearance="outline">
         <mat-label>Correo</mat-label>
         <input type="text" matInput formControlName="email" required />
-
       </mat-form-field>
       <div fxLayout fxLayoutGap="20px" fxLayoutAlign="end center">
         <button mat-flat-button color="accent" type="submit">Grabar</button>
