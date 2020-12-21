@@ -1,4 +1,8 @@
 <app-subtitle title="Historias"></app-subtitle>
 <app-container>
-  <app-list-history></app-list-history>
+  <app-list-history
+    [listHistory]="items"
+    [total]="total"
+    (onChangePage)="changePage($event)"
+  ></app-list-history>
 </app-container>

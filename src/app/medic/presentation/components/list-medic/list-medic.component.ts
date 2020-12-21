@@ -12,6 +12,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Observable, Subject } from 'rxjs';
 import { KeyPadButton } from 'src/app/interfaces/keypad-button.interface';
 import { MetadataTable } from 'src/app/interfaces/metadata-table.interface';
+import { DtoMedicExport } from 'src/app/medic/application/medic-export.dto';
 import { MedicEntity } from 'src/app/medic/domain/medic-entity';
 import { UtilService } from 'src/app/services/util.service';
 
@@ -76,27 +77,8 @@ export class ListMedicComponent implements OnInit, OnChanges {
     this.onActionForm.emit(row);
   }
 
-  /*   openModal(record: any = null) {
-    const options = {
-      disableClose: true,
-      panelClass: 'container-form',
-      data: record,
-    };
-
-    const reference: Observable<any> = this.util.openModal(
-      FormMedicComponent,
-      options
-    );
-    reference.subscribe((response) => {
-      if (response) {
-        this.medicRepository
-          .insert(response)
-          .subscribe((result) => console.log(result));
-      }
-    });
-  }
- */
   openSheet() {
-    this.util.openSheet();
+    const dto = new DtoMedicExport();
+    this.util.openSheet(this.dataTable, dto);
   }
 }

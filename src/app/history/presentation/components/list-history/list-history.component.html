@@ -1,16 +1,24 @@
-<app-table [dataTable]="dataTable" [metadataTable]="metadataTable">
-  <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let row" class="align-right">
-      <button mat-button>
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button mat-button>
-        <mat-icon>delete</mat-icon>
-      </button>
-    </td>
-  </ng-container>
-</app-table>
+<perfect-scrollbar class="heightMaxPerfectScrollbar">
+  <app-table [dataTable]="dataTable" [metadataTable]="metadataTable">
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row" class="align-right">
+        <button mat-button>
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-button>
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+  </app-table>
+</perfect-scrollbar>
+<mat-paginator
+  [length]="total"
+  pageSize="10"
+  hidePageSize="true"
+  showFirstLastButtons="true"
+></mat-paginator>
 <app-keypad
   [keypadButtons]="listKeyPadButtons"
   (clickButton)="execute($event)"
