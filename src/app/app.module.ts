@@ -15,6 +15,10 @@ import { MedicService } from './services/medic.service';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MatPaginatorIntlPro } from './utils/paginator';
+import { ExportRepository } from './shared/repositories/export.repository';
+import { ExportService } from './services/export.service';
+import { HistoryRepository } from './history/domain/history.repository';
+import { HistoryService } from './history/infraestructure/history.service';
 
 @NgModule({
   declarations: [AppComponent, MiComponenteComponent],
@@ -29,6 +33,8 @@ import { MatPaginatorIntlPro } from './utils/paginator';
   providers: [
     { provide: UserRepository, useClass: UserOperations },
     { provide: MedicRepository, useClass: MedicService },
+    { provide: ExportRepository, useClass: ExportService },
+    { provide: HistoryRepository, useClass: HistoryService },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: MatPaginatorIntl, useClass: MatPaginatorIntlPro },
   ],

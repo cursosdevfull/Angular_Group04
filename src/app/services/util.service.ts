@@ -54,7 +54,12 @@ export class UtilService {
     return referenceConfirm.afterClosed();
   }
 
-  openSheet() {
-    this.bottomSheet.open(ExportComponent);
+  openSheet(data: any[], dto: any) {
+    this.bottomSheet.open(ExportComponent, {
+      data: {
+        content: data,
+        dto,
+      },
+    });
   }
 }
