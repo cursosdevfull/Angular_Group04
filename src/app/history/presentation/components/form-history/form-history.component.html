@@ -1,0 +1,173 @@
+<form [formGroup]="group" (ngSubmit)="save()">
+  <mat-tab-group mat-stretch-tabs>
+    <mat-tab label="Requerimiento">
+      <div
+        class="container"
+        fxLayout
+        fxLayoutAlign="space-between"
+        fxLayoutGap="10px"
+      >
+        <div fxFlex="1 1 33%" fxLayout="column">
+          <h4>Solicitud</h4>
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha de ocurrencia</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="dateRequest"
+              required
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Contratante</mat-label>
+            <input type="text" matInput formControlName="contractor" required />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Código de autorización</mat-label>
+            <input
+              type="text"
+              matInput
+              formControlName="authorizationCode"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Poliza</mat-label>
+            <input type="text" matInput formControlName="policy" required />
+          </mat-form-field>
+        </div>
+        <div fxFlex="1 1 33%" fxLayout="column">
+          <h4>Datos del paciente</h4>
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input type="text" matInput formControlName="name" required />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Apellido</mat-label>
+            <input type="text" matInput formControlName="lastName" required />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>DNI</mat-label>
+            <input type="text" matInput formControlName="document" required />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Teléfono</mat-label>
+            <input type="text" matInput formControlName="phone" required />
+          </mat-form-field>
+        </div>
+        <div fxFlex="1 1 33%" fxLayout="column">
+          <h4>Otros datos</h4>
+          <mat-form-field appearance="outline">
+            <mat-label>Edad</mat-label>
+            <input type="number" matInput formControlName="age" required />
+          </mat-form-field>
+          <mat-radio-group
+            fxLayout
+            fxLayoutGap="10px"
+            formControlName="typeAge"
+            required
+          >
+            <mat-radio-button value="true"> Años </mat-radio-button>
+            <mat-radio-button value="false"> Meses </mat-radio-button>
+          </mat-radio-group>
+          <mat-form-field appearance="fill" fillColor="accent">
+            <mat-label>Género</mat-label>
+            <mat-select formControlName="gender" required>
+              <mat-option value="1">Hombre</mat-option>
+              <mat-option value="2">Mujer</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Ocurrencia">
+      <div
+        class="container"
+        fxLayout
+        fxLayoutAlign="space-between"
+        fxLayoutGap="10px"
+      >
+        <div fxFlex="1 1 50%" fxLayout="column">
+          <h4>Ubicación</h4>
+          <mat-form-field appearance="outline">
+            <mat-label>Dirección</mat-label>
+            <input type="text" matInput formControlName="address" required />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Referencia</mat-label>
+            <input type="text" matInput formControlName="reference" required />
+          </mat-form-field>
+          <h4>Personal</h4>
+          <mat-form-field appearance="outline">
+            <mat-label>Médico</mat-label>
+            <mat-select formControlName="medic" required>
+              <mat-option *ngFor="let medic of listMedic" [value]="medic._id">
+                {{
+                  medic.lastname + ", " + medic.surname + " " + medic.name
+                    | uppercase
+                }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Piloto</mat-label>
+            <mat-select formControlName="driver" required>
+              <mat-option
+                *ngFor="let driver of listDriver | async"
+                [value]="driver._id"
+              >
+                {{
+                  driver.lastname + ", " + driver.surname + " " + driver.name
+                    | uppercase
+                }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxFlex="1 1 50%" fxLayout="column">
+          <h4>Situación médica</h4>
+          <mat-form-field appearance="outline">
+            <mat-label>Diagnóstico</mat-label>
+            <textarea
+              cols="30"
+              rows="3"
+              matInput
+              formControlName="diagnostic"
+              required
+            ></textarea>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Síntomas</mat-label>
+            <textarea
+              cols="30"
+              rows="3"
+              matInput
+              formControlName="symptoms"
+              required
+            ></textarea>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Tratamiento</mat-label>
+            <textarea
+              cols="30"
+              rows="3"
+              matInput
+              formControlName="treatment"
+              required
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+  <div fxLayout fxLayoutAlign="center" class="container_button_save">
+    <button mat-flat-button color="primary" [disabled]="group.invalid">
+      Guardar
+    </button>
+  </div>
+</form>

@@ -29,7 +29,7 @@ export class ListMedicComponent implements OnInit, OnChanges {
 
   dataTable;
 
-  metadataTable: MetadataTable[] = [
+  metadataTable: Partial<MetadataTable>[] = [
     { field: 'name', title: 'Nombre' },
     { field: 'lastname', title: 'Apellido' },
   ];

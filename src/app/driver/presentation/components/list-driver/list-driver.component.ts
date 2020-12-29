@@ -15,7 +15,7 @@ export class ListDriverComponent implements OnInit {
     { name: 'Aida', lastname: 'Pérez' },
   ];
 
-  metadataTable: MetadataTable[] = [
+  metadataTable: Partial<MetadataTable>[] = [
     { field: 'name', title: 'Nombre' },
     { field: 'lastname', title: 'Apellido' },
   ];

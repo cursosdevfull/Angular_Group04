@@ -1,6 +1,6 @@
 export interface HistoryEntity {
-  _id: string;
-  dateRequest: Date;
+  _id?: string;
+  dateRequest: Date | string;
   contractor: string;
   authorizationCode: string;
   policy: string;

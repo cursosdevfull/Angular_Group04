@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import {
   Component,
   ContentChildren,
@@ -18,6 +19,7 @@ import { MetadataTable } from 'src/app/interfaces/metadata-table.interface';
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
+  providers: [DatePipe],
 })
 export class TableComponent implements OnInit {
   @Input() dataTable: any[];
@@ -29,7 +31,7 @@ export class TableComponent implements OnInit {
 
   dataSource: any;
 
-  constructor() {}
+  constructor(private datePipe: DatePipe) {}
 
   ngOnChanges() {
     this.columnsToView = this.metadataTable.map(
@@ -58,4 +60,14 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  applyPipe(metadata: MetadataTable, value: any) {
+    if (metadata.hasOwnProperty('pipe')) {
+      if (metadata['pipe'].name === 'date') {
+        return this.datePipe.transform(value, metadata['pipe'].format);
+      }
+    }
+
+    return value;
+  }
 }

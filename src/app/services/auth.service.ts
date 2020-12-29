@@ -8,6 +8,7 @@ import { IAuth } from '../interfaces/auth.interface';
 import { Tokens } from '../interfaces/tokens.interface';
 import { UserEntity } from '../user/domain/user-entity';
 import { StorageService } from './storage.service';
+import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -62,5 +63,13 @@ export class AuthService implements IAuth {
       `${environment.PATH_API}/auth/new-access-token`,
       refreshToken
     );
+  }
+
+  getRoles(): any {
+    const accessToken = this.storage.get('accessToken');
+    const jsonUser: any = jwt_decode(accessToken);
+    const roles = jsonUser.roles.map((el) => el.roleName);
+
+    return roles;
   }
 }

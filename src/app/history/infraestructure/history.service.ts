@@ -19,7 +19,8 @@ export class HistoryService extends HistoryRepository {
       .get(`${environment.PATH_API}/histories/page/${page}`)
       .pipe(pluck('result'));
   }
-  insert(history: Partial<HistoryEntity>): Observable<HistoryEntity> {
+  insert(history: HistoryEntity): Observable<HistoryEntity> {
+    delete history._id;
     return this.http.post<HistoryEntity>(
       `${environment.PATH_API}/histories/`,
       history
@@ -31,8 +32,10 @@ export class HistoryService extends HistoryRepository {
     );
   }
   update(history: HistoryEntity): Observable<HistoryEntity> {
+    const _id = history._id;
+    delete history._id;
     return this.http.put<HistoryEntity>(
-      `${environment.PATH_API}/histories/${history._id}`,
+      `${environment.PATH_API}/histories/${_id}`,
       history
     );
   }

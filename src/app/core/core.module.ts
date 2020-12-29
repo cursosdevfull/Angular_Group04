@@ -7,6 +7,7 @@ import { HeaderComponent } from './presentation/components/header/header.compone
 import { MenuComponent } from './presentation/components/menu/menu.component';
 import { RouterModule } from '@angular/router';
 import { CoreMaterialModule } from './core-material.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { CoreMaterialModule } from './core-material.module';
     ReactiveFormsModule,
     RouterModule,
     CoreMaterialModule,
+    TranslateModule,
   ],
   exports: [PageLoginComponent, HeaderComponent],
 })

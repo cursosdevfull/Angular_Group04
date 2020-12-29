@@ -8,9 +8,12 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HistoryEntity } from 'src/app/history/domain/history-entity';
+import { HistoryRepository } from 'src/app/history/domain/history.repository';
 import { KeyPadButton } from 'src/app/interfaces/keypad-button.interface';
 import { MetadataTable } from 'src/app/interfaces/metadata-table.interface';
+import { UtilService } from 'src/app/services/util.service';
 
 @Component({
   selector: 'app-list-history',
@@ -23,9 +26,16 @@ export class ListHistoryComponent implements OnInit {
   @Input() total: number;
   @Output() onChangePage: EventEmitter<number> = new EventEmitter();
   dataTable;
+  @Output() onDelete: EventEmitter<string> = new EventEmitter();
 
-  metadataTable: MetadataTable[] = [
-    { field: 'dateRequest', title: 'Fecha Requisición' },
+  rolesAllowedDelete = ['MEDIC'];
+
+  metadataTable: Partial<MetadataTable>[] = [
+    {
+      field: 'dateRequest',
+      title: 'Fecha Requisición',
+      pipe: { name: 'date', format: 'dd-MMM-yyyy' },
+    },
     { field: 'contractor', title: 'Contratante' },
     { field: 'policy', title: 'Política' },
     { field: 'name', title: 'Nombre' },
@@ -39,10 +49,19 @@ export class ListHistoryComponent implements OnInit {
       action: 'EXPORT',
       tooltip: 'EXPORTAR LISTA',
     },
-    { icon: 'add', color: 'primary', action: 'NEW', tooltip: 'AGREGAR MÉDICO' },
+    {
+      icon: 'add',
+      color: 'primary',
+      action: 'NEW',
+      tooltip: 'AGREGAR HISTORIA',
+    },
   ];
 
-  constructor() {}
+  constructor(
+    private readonly router: Router,
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly utilService: UtilService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -53,12 +72,30 @@ export class ListHistoryComponent implements OnInit {
   }
 
   execute(action: string) {
-    console.log(action);
+    switch (action) {
+      case 'NEW':
+        this.router.navigate(['new'], { relativeTo: this.activatedRoute });
+    }
   }
 
   ngAfterViewInit() {
     this.matPaginator.page.subscribe((status) => {
       this.onChangePage.emit(status.pageIndex);
     });
+  }
+
+  edit(id: string) {
+    // this.router.navigate(['/histories', id]);
+    this.router.navigate([id], { relativeTo: this.activatedRoute });
+  }
+
+  delete(id: string) {
+    this.utilService
+      .confirm('¿Está seguro de querer eliminar')
+      .subscribe((response) => {
+        if (response) {
+          this.onDelete.emit(id);
+        }
+      });
   }
 }

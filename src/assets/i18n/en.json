@@ -1,0 +1,9 @@
+{
+  "TITLE": "Ambulance System",
+  "MENU": {
+    "RESUMEN": "Summary",
+    "HISTORIAS": "Histories",
+    "MEDICOS": "Medics",
+    "PILOTOS": "Drivers"
+  }
+}

@@ -1,0 +1,53 @@
+[
+  {
+    "name": "Perú",
+    "series": [
+      {
+        "name": "enero",
+        "value": "20"
+      },
+      {
+        "name": "febrero",
+        "value": "250"
+      },
+      {
+        "name": "marzo",
+        "value": "1200"
+      }
+    ]
+  },
+  {
+    "name": "Ecuador",
+    "series": [
+      {
+        "name": "enero",
+        "value": "250"
+      },
+      {
+        "name": "febrero",
+        "value": "1800"
+      },
+      {
+        "name": "marzo",
+        "value": "2200"
+      }
+    ]
+  },
+  {
+    "name": "Chile",
+    "series": [
+      {
+        "name": "enero",
+        "value": "40"
+      },
+      {
+        "name": "febrero",
+        "value": "100"
+      },
+      {
+        "name": "marzo",
+        "value": "500"
+      }
+    ]
+  }
+]

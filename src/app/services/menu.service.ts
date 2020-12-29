@@ -6,15 +6,16 @@ import { IMenu } from '../interfaces/menu.interface';
 })
 export class MenuService {
   menus: IMenu[] = [
-    { path: '/histories', title: 'Historias', icon: 'face' },
+    { path: '/dashboard', title: 'MENU.RESUMEN', icon: 'dashboard' },
+    { path: '/histories', title: 'MENU.HISTORIAS', icon: 'face' },
     {
       path: '/drivers',
-      title: 'Pilotos',
+      title: 'MENU.PILOTOS',
       icon: 'local_hospital',
     },
     {
       path: '/medics',
-      title: 'Médicos',
+      title: 'MENU.MEDICOS',
       icon: 'favorite_border',
     },
   ];
